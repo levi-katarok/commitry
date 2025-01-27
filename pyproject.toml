@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "commitry-cli"
+version = "0.1.0"
+description = "A CLI tool that uses a local LLM to suggest commit messages"
+authors = [
+  { name = "Levi Stringer", email = "levi@katarok.ca" }
+]
+dependencies = [
+  "GitPython"
+]
+
+[project.scripts]
+commitry-cli = "commitry_cli.cli:main"

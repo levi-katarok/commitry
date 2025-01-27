@@ -1,0 +1,6 @@
+Metadata-Version: 2.2
+Name: commitry-cli
+Version: 0.1.0
+Summary: A CLI tool that uses a local LLM to suggest commit messages
+Author-email: Levi Stringer <levi@katarok.ca>
+Requires-Dist: GitPython

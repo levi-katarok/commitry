@@ -1,0 +1,2 @@
+[console_scripts]
+commitry-cli = commitry_cli.cli:main
