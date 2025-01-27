@@ -8,4 +8,7 @@ def get_staged_diff():
 
 def get_staged_diff_gitpython():
     light_on = True
-    return light_on
+    if light_on:
+        return "light_on"
+    else:
+        return "light_off"
