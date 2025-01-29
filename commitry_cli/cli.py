@@ -1,6 +1,9 @@
 import argparse
 from .git_utils import get_staged_diff, clean_diff
 from .llm import generate_commit_message
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def main():
     parser = argparse.ArgumentParser(description="Suggest commit messages using a local LLM.")
