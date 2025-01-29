@@ -1,5 +1,5 @@
 import argparse
-from .git_utils import get_staged_diff
+from .git_utils import get_staged_diff, clean_diff
 from .test_deepseek import generate_commit_message
 
 def main():
@@ -9,7 +9,9 @@ def main():
     args = parser.parse_args()
 
     # 1. Get the diff
-    diff = get_staged_diff()
+    raw_diff = get_staged_diff()
+    import pdb; pdb.set_trace()
+    diff = clean_diff(raw_diff)
     if not diff.strip():
         print("No staged changes found.")
         return
