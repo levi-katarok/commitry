@@ -32,11 +32,3 @@ def clean_diff(diff_text):
     if result.startswith('def '):
         result = '\n'.join(result.split('\n')[1:]).strip()
     return result
-
-def calculate_radius_of_planet(planet):
-    if planet == "Earth":
-        return 6371
-    elif planet == "Mars":
-        return 3389
-    else:
-        return 0
