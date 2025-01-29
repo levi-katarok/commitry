@@ -6,15 +6,6 @@ client = openai.Client(
     api_key="ollama"  # Authentication-free private access
 )
 
-# response = client.chat.completions.create(
-#     model="deepseek-r1:1.5b", # change the "XX" by the distilled model you choose
-#     messages=[{"role": "user", "content": "Explain blockchain security"}],
-#     stream=True
-# )
-
-# for chunk in response:
-#     print(chunk.choices[0].delta.content, end="", flush=True)
-
 
 def clean_response(text):
     """Remove any thinking sections from the LLM response."""
@@ -25,10 +16,10 @@ def clean_response(text):
         text = text[:start] + text[end:]
     return text.strip()
 
-def generate_commit_message(diff):
-    system_prompt = "You are a helpful assistant that generates concise user git commit messages for git commits. You will recieve git diffs and you will outut a once sentence commit message. Your job is to summarize the changes in the diff into a bullet point list of changes. The commit message should be a bullet point list of changes that summarizes the changes in the diff."
+def generate_commit_message(diff, model="deepseek-r1:7b"):
+    system_prompt = "You are a helpful assistant that generates concise summaries of git diffs. You will recieve git diffs and you will outut a once sentence summary of the changes made by the user. Your job is to summarize the changes made by the user into one sentence such that the user can post it as a commit message."
     response = client.chat.completions.create(
-        model="deepseek-r1:7b",
+        model=model,
         messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": diff}],
         stream=True
     )
@@ -37,6 +28,5 @@ def generate_commit_message(diff):
         content = chunk.choices[0].delta.content
         commit_message += content
         print(content, end="", flush=True)
-    
     # Clean up the response before returning
     return clean_response(commit_message)
